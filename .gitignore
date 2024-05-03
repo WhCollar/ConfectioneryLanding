@@ -21,6 +21,9 @@
 **/.idea/**/contentModel.xml
 **/.idea/**/modules.xml
 
+Localization
+App_Data
+
 *.suo
 *.user
 .vs/
