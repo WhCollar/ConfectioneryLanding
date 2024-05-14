@@ -103,42 +103,6 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
         );
     }
 
-    private void AddComment()
-    {
-        contentDefinitionManager.AlterTypeDefinition(nameof(Comment), type => type
-            .WithPart(nameof(Comment))
-            .WithPart(nameof(TitlePart))
-            .Creatable()
-        );
-
-        contentDefinitionManager.AlterPartDefinition(nameof(Comment), part => part
-            .WithField(nameof(Comment.FirstName), field => field
-                .OfType(nameof(TextField))
-                .WithDisplayName("Фамилия")
-            )
-            .WithField(nameof(Comment.SecondName), field => field
-                .OfType(nameof(TextField))
-                .WithDisplayName("Имя")
-            )
-            .WithField(nameof(Comment.Email), field => field
-                .OfType(nameof(TextField))
-                .WithDisplayName("Электронная почта")
-            )
-            .WithField(nameof(Comment.Product), field => field
-                .OfType(nameof(Product))
-                .WithDisplayName("Продукт")
-            )
-            .WithField(nameof(Comment.Text), field => field
-                .OfType(nameof(TextField))
-                .WithDisplayName("Текст")
-            )
-            .WithField(nameof(Comment.CreatedAt), field => field
-                .OfType(nameof(DateField))
-                .WithDisplayName("Дата создания")
-            )
-        );
-    }
-
     private void AddProduct()
     {
         contentDefinitionManager.AlterTypeDefinition(nameof(Product), type => type
@@ -162,6 +126,7 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                 .MergeSettings<ContentPickerFieldSettings>(setting =>
                 {
                     setting.DisplayedContentTypes = ["Category"];
+                    setting.Multiple = true;
                 })
             )
             .WithField(nameof(Product.Kilocalorie), field => field
@@ -187,6 +152,47 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
             .WithField(nameof(Product.Price), field => field
                 .OfType(nameof(NumericField))
                 .WithDisplayName("Цена")
+            )
+        );
+    }
+    
+    private void AddComment()
+    {
+        contentDefinitionManager.AlterTypeDefinition(nameof(Comment), type => type
+            .WithPart(nameof(Comment))
+            .WithPart(nameof(TitlePart))
+            .Creatable()
+        );
+
+        contentDefinitionManager.AlterPartDefinition(nameof(Comment), part => part
+            .WithField(nameof(Comment.FirstName), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Фамилия")
+            )
+            .WithField(nameof(Comment.SecondName), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Имя")
+            )
+            .WithField(nameof(Comment.Email), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Электронная почта")
+            )
+            .WithField(nameof(Comment.Product), field => field
+                .OfType(nameof(ContentPickerField))
+                .WithDisplayName("Продукт")
+                .MergeSettings<ContentPickerFieldSettings>(setting =>
+                {
+                    setting.DisplayedContentTypes = ["Product"];
+                    setting.Multiple = false;
+                })
+            )
+            .WithField(nameof(Comment.Text), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Текст")
+            )
+            .WithField(nameof(Comment.CreatedAt), field => field
+                .OfType(nameof(DateField))
+                .WithDisplayName("Дата создания")
             )
         );
     }

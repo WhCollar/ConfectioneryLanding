@@ -9,7 +9,7 @@ public class Product : ContentPart
 
     public TextField Desctiption { get; set; }
 
-    public List<Category> Categories { get; set; }
+    public ContentPickerField Categories { get; set; }
 
     public NumericField Kilocalorie { get; set; }
     

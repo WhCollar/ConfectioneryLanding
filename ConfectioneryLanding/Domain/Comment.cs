@@ -11,7 +11,7 @@ public class Comment : ContentPart
 
     public TextField Email { get; set; }
     
-    public Product Product { get; set; }
+    public ContentPickerField Product { get; set; }
     
     public TextField Text { get; set; }
 
