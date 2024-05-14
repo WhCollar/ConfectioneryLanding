@@ -264,7 +264,7 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                 .OfType(nameof(TextField))
                 .WithDisplayName("Имя")
             )
-            .WithField(nameof(RequestForm.PhoneName), field => field
+            .WithField(nameof(RequestForm.Phone), field => field
                 .OfType(nameof(TextField))
                 .WithDisplayName("Телефон")
             )

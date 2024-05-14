@@ -1,4 +1,4 @@
-using DocumentFormat.OpenXml.Spreadsheet;
+using OrchardCore.ContentFields.Fields;
 using OrchardCore.ContentManagement;
 
 namespace ConfectioneryLanding.Domain;
@@ -9,7 +9,7 @@ public class RequestForm : ContentPart
 
     public TextField SecondName { get; set; }
     
-    public TextField PhoneName { get; set; }
+    public TextField Phone { get; set; }
 
     public TextField Message { get; set; }
 }

@@ -22,7 +22,6 @@
     <ItemGroup>
       <Folder Include="Features\CatalogFeature\Queries\" />
       <Folder Include="Features\CommentFeature\Commands\" />
-      <Folder Include="Features\CommentFeature\Queries\" />
       <Folder Include="Features\OrderFeature\Commands\" />
     </ItemGroup>
 
