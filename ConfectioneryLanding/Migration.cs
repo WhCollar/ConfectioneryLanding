@@ -1,5 +1,6 @@
 using ConfectioneryLanding.Domain;
 using OrchardCore.ContentFields.Fields;
+using OrchardCore.ContentFields.Settings;
 using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.Data.Migration;
@@ -158,6 +159,10 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
             .WithField(nameof(Product.Categories), field => field
                 .OfType(nameof(ContentPickerField))
                 .WithDisplayName("Категории")
+                .MergeSettings<ContentPickerFieldSettings>(setting =>
+                {
+                    setting.DisplayedContentTypes = ["Category"];
+                })
             )
             .WithField(nameof(Product.Kilocalorie), field => field
                 .OfType(nameof(NumericField))
