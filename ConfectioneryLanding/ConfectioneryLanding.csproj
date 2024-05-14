@@ -20,10 +20,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <UpToDateCheckBuilt Include="postcss.config.js" Set="Css" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="Features\CatalogFeature\Queries\" />
       <Folder Include="Features\CommentFeature\Commands\" />
       <Folder Include="Features\CommentFeature\Queries\" />
