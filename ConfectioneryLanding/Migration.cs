@@ -196,4 +196,52 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
             )
         );
     }
+
+    private void AddOrder()
+    {
+        contentDefinitionManager.AlterTypeDefinition(nameof(Order), type => type
+            .WithPart(nameof(Order))
+            .WithPart(nameof(TitlePart))
+            .Creatable()
+        );
+        contentDefinitionManager.AlterPartDefinition(nameof(Order), part => part
+            .WithField(nameof(Order.FirstName), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Фамилия")
+            )
+            .WithField(nameof(Order.SecondName), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Имя")
+            )
+            .WithField(nameof(Order.Address), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Адресс")
+            )
+            .WithField(nameof(Order.Phone), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Телефон")
+            )
+            .WithField(nameof(Order.Email), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Электронная почта")
+            )
+            .WithField(nameof(Order.Notes), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Примечание")
+            )
+            .WithField(nameof(Order.CreatedAt), field => field
+                .OfType(nameof(DateField))
+                .WithDisplayName("Дата создания")
+            )
+            .WithField(nameof(Order.Products), field => field
+                .OfType(nameof(ContentPickerField))
+                .WithDisplayName("Позиции заказа")
+                .MergeSettings<ContentPickerFieldSettings>(setting =>
+                {
+                    setting.DisplayedContentTypes = ["Product"];
+                    setting.Multiple = true;
+                })
+            )
+        );
+    }
 }

@@ -16,9 +16,10 @@ public class Startup : StartupBase
     public override void ConfigureServices(IServiceCollection services)
     {
         services.AddContentPart<Category>();
-        services.AddContentPart<Comment>();
         services.AddContentPart<ContactInfo>();
         services.AddContentPart<Product>();
+        services.AddContentPart<Comment>();
+        services.AddContentPart<Order>();
         services.AddScoped<IDataMigration, Migration>();
     }
 }
