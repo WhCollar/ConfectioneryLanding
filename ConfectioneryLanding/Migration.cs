@@ -1,4 +1,5 @@
 using ConfectioneryLanding.Domain;
+using DocumentFormat.OpenXml.Drawing;
 using OrchardCore.ContentFields.Fields;
 using OrchardCore.ContentFields.Settings;
 using OrchardCore.ContentManagement.Metadata;
@@ -13,11 +14,13 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
     public int Create()
     {
         DeleteDefaultTypes();
+        AddRequestForm();
         AddContactInfo();
         AddCategory();
-        AddComment();
         AddProduct();
-
+        AddComment();
+        AddOrder();
+        
         return 1;
     }
 
@@ -241,6 +244,33 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                     setting.DisplayedContentTypes = ["Product"];
                     setting.Multiple = true;
                 })
+            )
+        );
+    }
+
+    private void AddRequestForm()
+    {
+        contentDefinitionManager.AlterTypeDefinition(nameof(RequestForm), type => type
+            .WithPart(nameof(RequestForm))
+            .WithPart(nameof(TitlePart))
+        );
+        
+        contentDefinitionManager.AlterPartDefinition(nameof(RequestForm), part => part
+            .WithField(nameof(RequestForm.FirstName), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Фамилия")
+            )
+            .WithField(nameof(RequestForm.SecondName), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Имя")
+            )
+            .WithField(nameof(RequestForm.PhoneName), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Телефон")
+            )
+            .WithField(nameof(RequestForm.Message), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Сообщение")
             )
         );
     }

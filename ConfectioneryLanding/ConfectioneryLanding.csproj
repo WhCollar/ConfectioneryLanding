@@ -24,7 +24,6 @@
       <Folder Include="Features\CommentFeature\Commands\" />
       <Folder Include="Features\CommentFeature\Queries\" />
       <Folder Include="Features\OrderFeature\Commands\" />
-      <Folder Include="Features\RequestFormFeature\Commands\" />
     </ItemGroup>
 
 </Project>
