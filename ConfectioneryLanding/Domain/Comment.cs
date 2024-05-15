@@ -14,6 +14,4 @@ public class Comment : ContentPart
     public ContentPickerField Product { get; set; }
     
     public TextField Text { get; set; }
-
-    public DateField CreatedAt { get; set; }
 }

@@ -193,10 +193,6 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                 .OfType(nameof(TextField))
                 .WithDisplayName("Текст")
             )
-            .WithField(nameof(Comment.CreatedAt), field => field
-                .OfType(nameof(DateField))
-                .WithDisplayName("Дата создания")
-            )
         );
     }
 
