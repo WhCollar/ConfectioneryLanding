@@ -19,9 +19,4 @@
       <PackageReference Include="OrchardCore.Translations.ru" Version="1.8.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Features\CatalogFeature\Queries\" />
-      <Folder Include="Features\OrderFeature\Commands\" />
-    </ItemGroup>
-
 </Project>
