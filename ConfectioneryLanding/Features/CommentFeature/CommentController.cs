@@ -67,7 +67,8 @@ public class CommentController(ISession session, IContentManager contentManager)
         part.Email = new TextField { Text = command.Email };
         part.Text = new TextField { Text = command.Text };
         part.Product = new ContentPickerField { ContentItemIds = [productId] };
-
+        part.Apply();
+        
         await contentManager.CreateAsync(contentItem, VersionOptions.Published);
         
         var titlePart = contentItem.As<TitlePart>();

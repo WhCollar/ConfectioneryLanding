@@ -249,6 +249,7 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
         contentDefinitionManager.AlterTypeDefinition(nameof(RequestForm), type => type
             .WithPart(nameof(RequestForm))
             .WithPart(nameof(TitlePart))
+            .Creatable()
         );
         
         contentDefinitionManager.AlterPartDefinition(nameof(RequestForm), part => part

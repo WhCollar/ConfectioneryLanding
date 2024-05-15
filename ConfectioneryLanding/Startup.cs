@@ -15,6 +15,7 @@ public class Startup : StartupBase
 
     public override void ConfigureServices(IServiceCollection services)
     {
+        services.AddContentPart<RequestForm>();
         services.AddContentPart<Category>();
         services.AddContentPart<ContactInfo>();
         services.AddContentPart<Product>();
