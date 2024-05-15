@@ -40,10 +40,6 @@ public class CommentController(ISession session, IContentManager contentManager)
             var deserializedComment = comment.As<Comment>();
             if (deserializedComment.Product.ContentItemIds.All(x => x != productId)) continue;
             
-            var product = await session
-                .Query<ContentItem, ContentItemIndex>(index => index.ContentItemId == productId)
-                .FirstOrDefaultAsync();
-
             response.Add(new ()
             {
                 ContentItemId = comment.ContentItemId,
@@ -75,7 +71,7 @@ public class CommentController(ISession session, IContentManager contentManager)
         await contentManager.CreateAsync(contentItem, VersionOptions.Published);
         
         var titlePart = contentItem.As<TitlePart>();
-        titlePart.Title = $"{part.FirstName} {part.SecondName} | {part.Email}";
+        titlePart.Title = $"{part.FirstName.Text} {part.SecondName.Text} | {part.Email.Text}";
         contentItem.DisplayText = titlePart.Title;
         titlePart.Apply();
 

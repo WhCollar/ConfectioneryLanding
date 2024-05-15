@@ -10,7 +10,7 @@ namespace ConfectioneryLanding.Features.RequestFormFeature;
 [IgnoreAntiforgeryToken, AllowAnonymous]
 public class RequestFormController(IContentManager contentManager) : Controller
 {
-    [HttpGet("/api/request-form")]
+    [HttpPost("/api/request-form")]
     public async Task<IActionResult> Add([FromBody] CreateRequestCommand command)
     {
         var contentItem = await contentManager.NewAsync(nameof(RequestForm));
@@ -24,7 +24,7 @@ public class RequestFormController(IContentManager contentManager) : Controller
         await contentManager.CreateAsync(contentItem, VersionOptions.Published);
         
         var titlePart = contentItem.As<TitlePart>();
-        titlePart.Title = $"{part.FirstName} {part.SecondName} | {part.Phone}";
+        titlePart.Title = $"{part.FirstName.Text} {part.SecondName.Text} | {part.Phone.Text}";
         contentItem.DisplayText = titlePart.Title;
         titlePart.Apply();
 
