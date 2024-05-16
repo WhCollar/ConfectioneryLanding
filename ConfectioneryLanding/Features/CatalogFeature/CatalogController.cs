@@ -100,6 +100,7 @@ public class CatalogController(ISession session, IContentManager contentManager)
         
         return Ok(castedProducts.Select(product => new ProductsResponse
         {
+            Id = product.ContentItem.ContentItemId,
             Name = product.Name.Text,
             Description = product.Description.Text,
             Categories = product.Categories.ContentItemIds,

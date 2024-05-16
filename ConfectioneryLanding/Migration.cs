@@ -238,10 +238,6 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                 .OfType(nameof(TextField))
                 .WithDisplayName("Примечание")
             )
-            .WithField(nameof(Order.CreatedAt), field => field
-                .OfType(nameof(DateField))
-                .WithDisplayName("Дата создания")
-            )
             .WithField(nameof(Order.Products), field => field
                 .OfType(nameof(ContentPickerField))
                 .WithDisplayName("Позиции заказа")

@@ -1,6 +1,7 @@
 namespace ConfectioneryLanding.Features.CatalogFeature.Responses;
 
 public record struct ProductsResponse(
+ string Id,
  string Name,
  string Description,
  string[] Categories,

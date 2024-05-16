@@ -16,8 +16,6 @@ public class Order : ContentPart
     public TextField Email { get; set; }
 
     public TextField Notes { get; set; }
-
-    public DateField CreatedAt { get; set; }
     
     public ContentPickerField Products { get; set; }
 }
