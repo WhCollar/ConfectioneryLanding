@@ -7,5 +7,4 @@ namespace ConfectioneryLanding.Features.OrderFeature;
 [IgnoreAntiforgeryToken, AllowAnonymous]
 public class OrderController(IContentManager contentManager) : Controller
 {
-    private readonly IContentManager _contentManager = contentManager;
 }

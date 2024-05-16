@@ -5,6 +5,8 @@ using OrchardCore.ContentFields.Settings;
 using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.Data.Migration;
+using OrchardCore.Media.Fields;
+using OrchardCore.Media.Settings;
 using OrchardCore.Title.Models;
 
 namespace ConfectioneryLanding;
@@ -119,7 +121,7 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                 .OfType(nameof(TextField))
                 .WithDisplayName("Название")
             )
-            .WithField(nameof(Product.Desctiption), field => field
+            .WithField(nameof(Product.Description), field => field
                 .OfType(nameof(TextField))
                 .WithDisplayName("Описание")
             )
@@ -129,6 +131,14 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                 .MergeSettings<ContentPickerFieldSettings>(setting =>
                 {
                     setting.DisplayedContentTypes = ["Category"];
+                    setting.Multiple = true;
+                })
+            )
+            .WithField(nameof(Product.Images), field => field
+                .OfType(nameof(MediaField))
+                .WithDisplayName("Изображения")
+                .MergeSettings<MediaFieldSettings>(setting =>
+                {
                     setting.Multiple = true;
                 })
             )
