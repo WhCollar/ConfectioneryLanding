@@ -113,4 +113,42 @@ public class CatalogController(ISession session, IContentManager contentManager)
             Price = product.Price.Value
         }));
     }
+    
+    [HttpGet("/api/catalog/product/{productId}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductsResponse))]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetProductById([FromRoute] string productId)
+    {
+        var products = await session
+            .Query<ContentItem, ContentItemIndex>(index => index.ContentType == nameof(Product))
+            .ListAsync();
+
+        if (products == null) return NotFound();
+        
+        foreach (var product in products.ToList())
+        {
+            await contentManager.LoadAsync(product);
+         
+            if (product.ContentItemId != productId) continue;
+            
+            var castedProduct = product.As<Product>();
+            
+            return Ok(new ProductsResponse
+            {
+                Id = castedProduct.ContentItem.ContentItemId,
+                Name = castedProduct.Name.Text,
+                Description = castedProduct.Description.Text,
+                Categories = castedProduct.Categories.ContentItemIds,
+                Images = castedProduct.Images.Paths,
+                Kilocalorie = castedProduct.Kilocalorie.Value,
+                Weight = castedProduct.Weight.Value,
+                Width = castedProduct.Width.Value,
+                Height = castedProduct.Height.Value,
+                Depth = castedProduct.Depth.Value,
+                Price = castedProduct.Price.Value
+            });
+        }
+
+        return NotFound();
+    }
 }
