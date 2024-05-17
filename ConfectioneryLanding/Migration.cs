@@ -61,6 +61,22 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                 .OfType(nameof(TextField))
                 .WithDisplayName("Электронная почта")
             )
+            .WithField(nameof(ContactInfo.TitleLabel), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Над заголовок")
+            )
+            .WithField(nameof(ContactInfo.Title), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Заголовок")
+            )
+            .WithField(nameof(ContactInfo.Text), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Текст")
+            )
+            .WithField(nameof(ContactInfo.MapLink), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Ссылка для карты")
+            )
             .WithField(nameof(ContactInfo.FacebookLink), field => field
                 .OfType(nameof(TextField))
                 .WithDisplayName("Facebook")

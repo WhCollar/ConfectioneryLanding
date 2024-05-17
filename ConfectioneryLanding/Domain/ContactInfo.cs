@@ -10,6 +10,14 @@ public class ContactInfo : ContentPart
     public TextField Email { get; set; }
     
     public TextField Phone { get; set; }
+
+    public TextField TitleLabel { get; set; }
+    
+    public TextField Title { get; set; }
+    
+    public TextField Text { get; set; }
+    
+    public TextField MapLink { get; set; }
     
     public TextField FacebookLink { get; set; }
 
