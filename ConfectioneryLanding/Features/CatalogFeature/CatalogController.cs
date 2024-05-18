@@ -79,7 +79,7 @@ public class CatalogController(ISession session, IContentManager contentManager)
 
         var castedProducts = products.Select(product => product.As<Product>());
         
-        if (query.CategoryIds != null)
+        if (query.CategoryIds != null && query.CategoryIds.Length != 0)
         {
             castedProducts = castedProducts.Where(product => 
                 product.Categories.ContentItemIds.Any(category => 
@@ -95,7 +95,7 @@ public class CatalogController(ISession session, IContentManager contentManager)
         
         if (query.MaxPrice != null)
         {
-            castedProducts = castedProducts.Where(product => product.Price.Value >= query.MaxPrice);
+            castedProducts = castedProducts.Where(product => product.Price.Value <= query.MaxPrice);
         }
         
         return Ok(castedProducts.Select(product => new ProductsResponse

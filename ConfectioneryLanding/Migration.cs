@@ -22,6 +22,7 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
         AddProduct();
         AddComment();
         AddOrder();
+        AddMainPageSettings();
         
         return 1;
     }
@@ -290,6 +291,30 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
             .WithField(nameof(RequestForm.Message), field => field
                 .OfType(nameof(TextField))
                 .WithDisplayName("Сообщение")
+            )
+        );
+    }
+
+    private void AddMainPageSettings()
+    {
+        contentDefinitionManager.AlterTypeDefinition(nameof(MainPageSettings), type => type
+            .WithPart(nameof(MainPageSettings))
+            .Stereotype("CustomSettings")
+        );
+        
+        contentDefinitionManager.AlterPartDefinition(nameof(MainPageSettings), part => part
+            .WithField(nameof(MainPageSettings.CategoryProductSection), field => field
+                .OfType(nameof(ContentPickerField))
+                .MergeSettings<ContentPickerFieldSettings>(setting =>
+                {
+                    setting.DisplayedContentTypes = ["Category"];
+                    setting.Multiple = false;
+                })
+                .WithDisplayName("Категория для отображения на главной странице")
+            )
+            .WithField(nameof(MainPageSettings.CategorySectionProductCount), field => field
+                .OfType(nameof(NumericField))
+                .WithDisplayName("Количество товаров для отображения на главной странице")
             )
         );
     }
