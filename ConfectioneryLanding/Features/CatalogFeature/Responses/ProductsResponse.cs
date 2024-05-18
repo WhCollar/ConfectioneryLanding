@@ -4,7 +4,7 @@ public record struct ProductsResponse(
  string Id,
  string Name,
  string Description,
- string[] Categories,
+ string[] CategoryIds,
  string[] Images, 
  decimal? Kilocalorie,
  decimal? Weight,
