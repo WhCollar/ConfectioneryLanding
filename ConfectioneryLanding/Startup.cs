@@ -22,6 +22,7 @@ public class Startup : StartupBase
         services.AddContentPart<Comment>();
         services.AddContentPart<Order>();
         services.AddContentPart<MainPageSettings>();
+        services.AddContentPart<CarouselItem>();
         services.AddScoped<IDataMigration, Migration>();
     }
 }

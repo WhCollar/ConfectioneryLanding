@@ -80,4 +80,34 @@ public class MainPageController(ISession session, ISiteService siteService, ICon
 
         return Ok(response);
     }
+    
+    [HttpGet("/api/main-page-info/carousel-items")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<CarouselItemResponse>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetCarouselItem()
+    {
+        var items = await session
+            .Query<ContentItem, ContentItemIndex>(index => index.ContentType == nameof(CarouselItem))
+            .ListAsync();
+
+        if (items == null) return NotFound();
+
+        foreach (var item in items)
+        {
+            await contentManager.LoadAsync(item);
+        }
+
+        var casteditems = items.Select(product => product.As<CarouselItem>());
+
+        var response = casteditems.Select(item => new CarouselItemResponse
+        {
+            Title = item.Title.Text,
+            SecondTitle = item.SecondTitle.Text,
+            Description = item.Description.Text,
+            Image = item.Image.Paths.FirstOrDefault(),
+            ProductId = item.Product.ContentItemIds.FirstOrDefault()
+        }).ToList();
+
+        return Ok(response);
+    }
 }

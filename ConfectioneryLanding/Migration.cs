@@ -23,6 +23,7 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
         AddComment();
         AddOrder();
         AddMainPageSettings();
+        AddCarouselItem();
         
         return 1;
     }
@@ -317,5 +318,46 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
                 .WithDisplayName("Количество товаров для отображения на главной странице")
             )
         );
+    }
+    
+    private void AddCarouselItem()
+    {
+        contentDefinitionManager.AlterTypeDefinition(nameof(CarouselItem), type => type
+            .WithPart(nameof(CarouselItem))
+            .WithPart(nameof(TitlePart))
+            .Creatable()
+        );
+        contentDefinitionManager.AlterPartDefinition(nameof(CarouselItem), part => part
+            .WithField(nameof(CarouselItem.Title), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Заголовок")
+            )
+            .WithField(nameof(CarouselItem.SecondTitle), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Второй заголовок")
+            )
+            .WithField(nameof(CarouselItem.Description), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Описание")
+            )
+            .WithField(nameof(CarouselItem.Image), field => field
+                .OfType(nameof(MediaField))
+                .MergeSettings<MediaFieldSettings>(setting =>
+                {
+                    setting.Multiple = false;
+                })
+                .WithDisplayName("Описание")
+            )
+            .WithField(nameof(CarouselItem.Product), field => field
+                .OfType(nameof(ContentPickerField))
+                .MergeSettings<ContentPickerFieldSettings>(setting =>
+                {
+                    setting.DisplayedContentTypes = ["Product"];
+                    setting.Multiple = false;
+                })
+                .WithDisplayName("Связанный продукт")
+            )
+        );
+
     }
 }
