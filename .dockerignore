@@ -23,3 +23,16 @@
 **/values.dev.yaml
 LICENSE
 README.md
+
+# ignore all
+**
+
+# Except src for building
+!./src/*
+
+# Ignore any App_Data folder
+**/App_Data/
+
+# Ignore all prebuild
+**/[b|B]in/
+**/[O|o]bj/
