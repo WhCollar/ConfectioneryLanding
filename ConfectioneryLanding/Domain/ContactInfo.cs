@@ -17,6 +17,8 @@ public class ContactInfo : ContentPart
     
     public TextField Text { get; set; }
     
+    public TextField ContactPageText { get; set; }
+    
     public TextField MapLink { get; set; }
     
     public TextField FacebookLink { get; set; }

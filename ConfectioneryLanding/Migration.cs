@@ -73,7 +73,11 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
             )
             .WithField(nameof(ContactInfo.Text), field => field
                 .OfType(nameof(TextField))
-                .WithDisplayName("Текст")
+                .WithDisplayName("Текст (Footer)")
+            )
+            .WithField(nameof(ContactInfo.ContactPageText), field => field
+                .OfType(nameof(TextField))
+                .WithDisplayName("Текст (Страница 'Контакты')")
             )
             .WithField(nameof(ContactInfo.MapLink), field => field
                 .OfType(nameof(TextField))

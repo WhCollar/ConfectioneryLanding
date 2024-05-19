@@ -7,6 +7,7 @@ public record struct ContactInfoResponse(
     string TitleLabel,
     string Title,
     string Text,
+    string ContactPageText,
     string MapLink,
     string FacebookLink,
     string PinterestLink,

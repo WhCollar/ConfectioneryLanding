@@ -25,6 +25,7 @@ public class ContactInfoController(ISiteService siteService) : Controller
             TitleLabel: contactInfo.TitleLabel.Text,
             Title: contactInfo.Title.Text,
             Text: contactInfo.Text.Text,
+            ContactPageText: contactInfo.ContactPageText.Text,
             MapLink: contactInfo.MapLink.Text,
             FacebookLink: contactInfo.FacebookLink.Text,
             PinterestLink: contactInfo.PinterestLink.Text,
