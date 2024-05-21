@@ -1,5 +1,4 @@
 using ConfectioneryLanding.Domain;
-using DocumentFormat.OpenXml.Drawing;
 using OrchardCore.ContentFields.Fields;
 using OrchardCore.ContentFields.Settings;
 using OrchardCore.ContentManagement.Metadata;
