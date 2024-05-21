@@ -33,5 +33,5 @@ jobs:
             docker stop ${{ vars.DOCKER_CONTAINER_NAME }} 2> /dev/null || true
             docker rm ${{ vars.DOCKER_CONTAINER_NAME }} 2> /dev/null || true
             docker build -t ${{ vars.DOCKER_IMAGE_NAME }} -f ./${{ github.event.repository.name }}/${{ github.event.repository.name }}/Dockerfile ./${{ github.event.repository.name }}/
-            sudo chmod -R a+rw ./${{ github.event.repository.name }}/${{ github.event.repository.name }}/App_Data/
+#            sudo chmod -R a+rw ./${{ github.event.repository.name }}/${{ github.event.repository.name }}/App_Data/  # Перед запуском контейнера, необходимо разрешить Docker писать в дерикторию
             docker run -d --name ${{ vars.DOCKER_CONTAINER_NAME }} -v ./${{ github.event.repository.name }}/${{ github.event.repository.name }}/wwwroot/:/app/wwwroot/ -v ./${{ github.event.repository.name }}/${{ github.event.repository.name }}/App_Data/:/app/App_Data/ -p 5374:8080 --restart=always ${{ vars.DOCKER_IMAGE_NAME }}
