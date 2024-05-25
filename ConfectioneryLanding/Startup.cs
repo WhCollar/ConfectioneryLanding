@@ -20,6 +20,7 @@ public class Startup : StartupBase
         services.AddContentPart<ContactInfo>();
         services.AddContentPart<Product>();
         services.AddContentPart<Comment>();
+        services.AddContentPart<ReceiptType>();
         services.AddContentPart<Order>();
         services.AddContentPart<MainPageSettings>();
         services.AddContentPart<CarouselItem>();
