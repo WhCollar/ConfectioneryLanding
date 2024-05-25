@@ -45,7 +45,7 @@ public class OrderController(ISession session, IContentManager contentManager) :
         return new OkResult();
     }
 
-    [HttpPost("/api/receipt-type")]
+    [HttpGet("/api/receipt-type")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ReceiptTypeResponse>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetReceiptType()
