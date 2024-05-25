@@ -11,6 +11,8 @@ public class Order : ContentPart
     
     public TextField Address { get; set; }
 
+    public ContentPickerField ReceiptType { get; set; }
+
     public TextField Phone { get; set; }
     
     public TextField Email { get; set; }

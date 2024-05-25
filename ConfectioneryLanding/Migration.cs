@@ -23,6 +23,7 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
         AddOrder();
         AddMainPageSettings();
         AddCarouselItem();
+        AddReceiptType();
         
         return 1;
     }
@@ -227,6 +228,14 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
         );
     }
 
+    private void AddReceiptType()
+    {
+        contentDefinitionManager.AlterTypeDefinition(nameof(ReceiptType), type => type
+            .WithPart(nameof(ReceiptType))
+            .WithPart(nameof(TitlePart))
+        );
+    }
+
     private void AddOrder()
     {
         contentDefinitionManager.AlterTypeDefinition(nameof(Order), type => type
@@ -242,6 +251,15 @@ public class Migration(IContentDefinitionManager contentDefinitionManager) : Dat
             .WithField(nameof(Order.SecondName), field => field
                 .OfType(nameof(TextField))
                 .WithDisplayName("Имя")
+            )
+            .WithField(nameof(Order.ReceiptType), field => field
+                .OfType(nameof(ContentPickerField))
+                .WithDisplayName("Тип получения")
+                .MergeSettings<ContentPickerFieldSettings>(setting =>
+                {
+                    setting.DisplayedContentTypes = ["ReceiptType"];
+                    setting.Multiple = false;
+                })
             )
             .WithField(nameof(Order.Address), field => field
                 .OfType(nameof(TextField))
