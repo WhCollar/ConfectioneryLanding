@@ -4,8 +4,8 @@ public record struct CreateOrderCommand(
     string FirstName,
     string SecondName,
     string ReceiptTypeId,
-    string Address,
+    string? Address,
     string Phone,
-    string Email,
-    string Notes,
+    string? Email,
+    string? Notes,
     string[] ProductIds);
